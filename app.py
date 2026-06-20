@@ -12,12 +12,15 @@ st.set_page_config(
 
 # ---------------- LOAD MODEL ----------------
 
+model_loaded = False
+
 try:
     model = joblib.load("models/churn_model.pkl")
     model_columns = joblib.load("models/model_columns.pkl")
     model_loaded = True
+
 except Exception as e:
-    model_loaded = False
+    st.error(f"Actual Error: {e}")
 
 # ---------------- TITLE ----------------
 
@@ -55,13 +58,13 @@ if uploaded_file is not None:
     st.subheader("Number of Rows")
     st.write(len(uploaded_df))
 
-    # ---------- RUN ANALYSIS BUTTON ----------
-
     if st.button("Run Churn Analysis"):
+
+        if not model_loaded:
+            st.stop()
 
         data = uploaded_df.copy()
 
-        # Clean TotalCharges
         data["TotalCharges"] = pd.to_numeric(
             data["TotalCharges"],
             errors="coerce"
@@ -71,28 +74,23 @@ if uploaded_file is not None:
             data["TotalCharges"].median()
         )
 
-        # Remove customerID
         if "customerID" in data.columns:
             data = data.drop("customerID", axis=1)
 
-        # One Hot Encoding
         data_encoded = pd.get_dummies(
             data,
             drop_first=True
         )
 
-        # Match training columns
         data_encoded = data_encoded.reindex(
             columns=model_columns,
             fill_value=0
         )
 
-        # Predictions
         predictions = model.predict(data_encoded)
 
         uploaded_df["Predicted_Churn"] = predictions
 
-        # Metrics
         total_customers = len(uploaded_df)
 
         high_risk = int(predictions.sum())
@@ -147,9 +145,53 @@ if uploaded_file is not None:
             uploaded_df["Predicted_Churn"] == 1
         ]
 
-        st.dataframe(
-            risk_customers.head(20)
-        )
+        st.dataframe(risk_customers.head(20))
+
+        # ---------------- CHARTS ----------------
+
+        chart_data = pd.DataFrame({
+           "Category": [
+             "Safe Customers",
+             "High Risk Customers"
+      ],
+        "Count": [
+        total_customers - high_risk,
+        high_risk
+    ]
+    })
+
+        st.subheader("Customer Risk Distribution")
+
+        st.bar_chart(
+          chart_data.set_index("Category")
+       )
+
+# ---------------- DOWNLOAD REPORT ----------------
+
+csv = risk_customers.to_csv(index=False)
+
+st.download_button(
+    label="📥 Download High Risk Customers Report",
+    data=csv,
+    file_name="high_risk_customers.csv",
+    mime="text/csv"
+)
+
+# ---------------- SUMMARY ----------------
+
+st.subheader("Analysis Summary")
+
+st.info(
+    f"""
+    Total Customers: {total_customers}
+
+    High Risk Customers: {high_risk}
+
+    Risk Percentage: {risk_percent}%
+
+    Monthly Revenue At Risk: ${monthly_revenue_risk:,.0f}
+    """
+)
 
 # ---------------- BUSINESS INSIGHTS ----------------
 
