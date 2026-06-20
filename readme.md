@@ -1,31 +1,193 @@
-# ProfitGuard AI
+# 📊 ProfitGuard AI
 
-AI-powered Revenue Loss Prevention Platform
+### AI-Powered Customer Churn Prediction & Revenue Risk Analytics Platform
 
-## Features
+ProfitGuard AI is a Machine Learning-powered business intelligence platform that helps companies identify customers likely to churn and estimate potential revenue loss before it happens.
 
-- Customer Churn Prediction
-- Complaint Intelligence
-- Revenue Risk Analysis
-- AI Business Recommendations
+The system analyzes customer behavior, predicts churn risk, and provides actionable insights that help businesses improve customer retention and reduce revenue leakage.
 
-## Status
+---
 
-🚀 Project Started
+## 🚀 Key Features
 
-## Initial Business Insights
+### 🤖 Customer Churn Prediction
 
-### Contract Type Impact
+* Predicts customers likely to leave the company.
+* Uses Machine Learning for risk classification.
 
-- Month-to-month customers showed the highest churn.
-- Two-year contract customers showed the lowest churn.
+### 💰 Revenue Risk Analysis
 
-### Revenue Risk
+* Calculates potential monthly revenue loss.
+* Estimates annual revenue at risk.
 
-- Churned customers had higher average monthly charges ($74.44)
-  compared to retained customers ($61.27).
+### 📈 Business Intelligence Dashboard
 
-### Business Recommendation
+* Interactive Streamlit dashboard.
+* Upload customer datasets for instant analysis.
 
-Target high-paying month-to-month customers with retention
-offers to reduce revenue loss.
+### 🎯 High-Risk Customer Identification
+
+* Detects customers with high churn probability.
+* Helps businesses prioritize retention campaigns.
+
+### 📊 Customer Insights
+
+* Contract-based churn analysis.
+* Revenue impact assessment.
+* Retention-focused recommendations.
+
+---
+
+## 🛠 Tech Stack
+
+### Programming Language
+
+* Python
+
+### Machine Learning
+
+* Scikit-Learn
+* Random Forest Classifier
+
+### Data Analysis
+
+* Pandas
+* NumPy
+
+### Dashboard
+
+* Streamlit
+
+### Model Persistence
+
+* Joblib
+
+### Version Control
+
+* Git
+* GitHub
+
+---
+
+## 📂 Dataset
+
+Dataset Used:
+
+**Telco Customer Churn Dataset**
+
+Dataset contains:
+
+* 7,043 Customers
+* 21 Original Features
+* Customer Demographics
+* Service Information
+* Billing Information
+* Churn Labels
+
+---
+
+## ⚙️ Machine Learning Pipeline
+
+### Data Preprocessing
+
+* Missing value handling
+* Data cleaning
+* Feature encoding
+* Numerical conversion
+
+### Feature Engineering
+
+* One-Hot Encoding
+* Feature selection
+* Customer attribute transformation
+
+### Model Training
+
+Algorithm Used:
+
+* Random Forest Classifier
+
+### Model Performance
+
+* Accuracy: **79%**
+
+---
+
+## 📊 Business Insights Generated
+
+### Contract Impact
+
+* Month-to-month customers show the highest churn risk.
+* Long-term contract customers have significantly lower churn rates.
+
+### Revenue Impact
+
+* Customers who churn contribute substantial revenue loss.
+* Early intervention can reduce business risk.
+
+### Retention Strategy
+
+* Focus on high-value customers.
+* Offer loyalty incentives to month-to-month subscribers.
+* Improve customer support engagement.
+
+---
+
+## 🖥 Dashboard Features
+
+* CSV Upload
+* Customer Dataset Analysis
+* Churn Prediction
+* Risk Percentage Calculation
+* Monthly Revenue At Risk
+* Annual Revenue At Risk
+* High-Risk Customer Identification
+
+---
+
+## 📸 Project Screenshots
+
+Add screenshots here:
+
+### Dashboard Home
+
+![Dashboard Screenshot](screenshots/dashboard.png)
+
+### Churn Analysis Results
+
+![Analysis Screenshot](screenshots/analysis.png)
+
+---
+
+## 🎯 Future Improvements
+
+* XGBoost Model Integration
+* Explainable AI (SHAP)
+* Customer Segmentation
+* Automated Retention Recommendations
+* Real-Time Prediction API
+* Cloud Deployment
+
+---
+
+## 👩‍💻 Author
+
+**Minal Sharma**
+
+AI & Machine Learning Student
+
+Focused on building AI solutions that solve real-world business problems.
+
+---
+
+## ⭐ Project Status
+
+✅ Data Analysis Completed
+
+✅ Machine Learning Model Trained
+
+✅ Streamlit Dashboard Developed
+
+✅ Revenue Risk Analytics Implemented
+
+🚀 Actively Improving & Expanding Features
