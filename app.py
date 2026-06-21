@@ -24,8 +24,49 @@ except Exception as e:
 
 # ---------------- TITLE ----------------
 
-st.title("📊 ProfitGuard AI")
-st.subheader("AI-Powered Customer Churn Prevention System")
+st.markdown("""
+<style>
+
+.main {
+    padding-top: 1rem;
+}
+
+div[data-testid="metric-container"] {
+    background-color: #111827;
+    border: 1px solid #374151;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+h1 {
+    color: #4F46E5;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+with st.sidebar:
+    st.title("ProfitGuard AI")
+
+    st.info("""
+    Features:
+    - Churn Prediction
+    - Revenue Risk Analysis
+    - Customer Segmentation
+    - Downloadable Reports
+    """)
+
+    st.success("Model Accuracy: 79%")
+
+st.markdown("""
+# 📊 ProfitGuard AI
+
+### Predict Customer Churn • Protect Revenue • Improve Retention
+
+AI-powered analytics platform that helps businesses identify churn risks and estimate revenue loss before customers leave.
+""")
+
+st.subheader("Business Risk Overview")
 
 # ---------------- MODEL STATUS ----------------
 
@@ -188,6 +229,23 @@ if uploaded_file is not None:
 
         st.subheader("Customer Risk Percentage")
         st.pyplot(fig)
+
+        st.subheader("Revenue Impact")
+
+        revenue_df = pd.DataFrame({
+            "Metric": [
+               "Monthly Revenue Risk",
+               "Annual Revenue Risk"
+        ],
+          "Value": [
+              monthly_revenue_risk,
+              annual_revenue_risk
+        ]
+   })
+
+        st.bar_chart(
+        revenue_df.set_index("Metric")
+   )
 
 # ---------------- DOWNLOAD REPORT ----------------
 
