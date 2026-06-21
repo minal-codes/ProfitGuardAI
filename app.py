@@ -142,10 +142,20 @@ if uploaded_file is not None:
         st.subheader("High Risk Customers")
 
         risk_customers = uploaded_df[
-            uploaded_df["Predicted_Churn"] == 1
+           uploaded_df["Predicted_Churn"] == 1
         ]
 
+        risk_customers = risk_customers.sort_values(
+    by="MonthlyCharges",
+    ascending=False
+)
+
         st.dataframe(risk_customers.head(20))
+
+        st.warning(
+            f"{high_risk} customers may churn, putting approximately "
+            f"${monthly_revenue_risk:,.0f} monthly revenue at risk."
+)
 
         # ---------------- CHARTS ----------------
 
@@ -165,6 +175,19 @@ if uploaded_file is not None:
         st.bar_chart(
           chart_data.set_index("Category")
        )
+        
+        import matplotlib.pyplot as plt
+
+        fig, ax = plt.subplots()
+
+        ax.pie(
+           [total_customers - high_risk, high_risk],
+            labels=["Safe", "High Risk"],
+            autopct="%1.1f%%"
+        )
+
+        st.subheader("Customer Risk Percentage")
+        st.pyplot(fig)
 
 # ---------------- DOWNLOAD REPORT ----------------
 
