@@ -79,12 +79,25 @@ st.sidebar.image(
 # ---------------- HERO SECTION ----------------
 
 st.markdown("""
-# 📊 ProfitGuard AI
+<div style="
+padding:30px;
+border-radius:20px;
+background: linear-gradient(135deg,#4F46E5,#06B6D4);
+color:white;
+text-align:center;
+margin-bottom:20px;
+">
 
-### Predict Customer Churn • Protect Revenue • Improve Retention
+<h1>📊 ProfitGuard AI</h1>
 
-AI-powered analytics platform that helps businesses identify churn risks and estimate revenue loss before customers leave.
-""")
+<h3>Predict Customer Churn • Protect Revenue • Improve Retention</h3>
+
+<p>
+AI-powered analytics platform for customer retention and revenue protection.
+</p>
+
+</div>
+""", unsafe_allow_html=True)
 
 st.subheader("Business Risk Overview")
 
@@ -238,13 +251,13 @@ if uploaded_file is not None:
        )
         
         import matplotlib.pyplot as plt
-
-        fig, ax = plt.subplots()
+        
+        fig, ax = plt.subplots(figsize=(2,2))
 
         ax.pie(
-           [total_customers - high_risk, high_risk],
-            labels=["Safe", "High Risk"],
-            autopct="%1.1f%%"
+         [total_customers - high_risk, high_risk],
+         labels=["Safe", "High Risk"],
+         autopct="%1.1f%%"
         )
 
         st.subheader("Customer Risk Percentage")
@@ -269,9 +282,9 @@ if uploaded_file is not None:
 
 # ---------------- DOWNLOAD REPORT ----------------
 
-csv = risk_customers.to_csv(index=False)
+        csv = risk_customers.to_csv(index=False)
 
-st.download_button(
+        st.download_button(
     label="📥 Download High Risk Customers Report",
     data=csv,
     file_name="high_risk_customers.csv",
@@ -280,9 +293,9 @@ st.download_button(
 
 # ---------------- SUMMARY ----------------
 
-st.subheader("Analysis Summary")
+        st.subheader("Analysis Summary")
 
-st.info(
+        st.info(
     f"""
     Total Customers: {total_customers}
 
