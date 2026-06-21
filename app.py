@@ -10,6 +10,12 @@ st.set_page_config(
     layout="wide"
 )
 
+with open("assets/style.css") as f:
+    st.markdown(
+        f"<style>{f.read()}</style>",
+        unsafe_allow_html=True
+    )
+
 # ---------------- LOAD MODEL ----------------
 
 model_loaded = False
@@ -57,6 +63,20 @@ with st.sidebar:
     """)
 
     st.success("Model Accuracy: 79%")
+
+# ---------------- LOGO & BANNER ----------------
+
+st.image(
+    "assets/banner.png",
+    use_container_width=True
+)
+
+st.sidebar.image(
+    "assets/logo.png",
+    width=120
+)
+
+# ---------------- HERO SECTION ----------------
 
 st.markdown("""
 # 📊 ProfitGuard AI
